@@ -22,14 +22,14 @@ class Paddle(Turtle):
         self.goto(self.x_pos, self.y_pos)
 
     def up(self):
-        print("moving up")
+
         pos = self.position()
         pos_x = pos[0]
         pos_y = pos[1] + DISTANCE_TRAVEL
         self.goto(x=pos_x, y=pos_y)
 
     def down(self):
-        print("moving down")
+
         pos = self.position()
         pos_x = pos[0]
         pos_y = pos[1] - DISTANCE_TRAVEL

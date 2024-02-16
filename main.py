@@ -1,5 +1,6 @@
 from turtle import Screen, Turtle
 from paddle import Paddle
+from ball import Ball
 import time
 
 NET_LENGTH = 10
@@ -10,6 +11,8 @@ screen = Screen()
 net = Turtle()
 right_paddle = Paddle(x=350, y=0)
 left_paddle = Paddle(x=-350, y=0)
+ball = Ball()
+ball.setheading(15)
 
 screen.title("Pong Game")
 screen.bgcolor("black")
@@ -33,8 +36,6 @@ def create_net():
         net.forward(NET_GAP)
 
 
-create_net()
-
 screen.listen()
 screen.onkey(key='Down', fun=right_paddle.down)
 screen.onkey(key='Up', fun=right_paddle.up)
@@ -45,4 +46,17 @@ is_game_on = True
 
 while is_game_on:
     screen.update()
+    ball.move()
+    x_pos = ball.xcor()
+    y_pos = ball.ycor()
+    distance_left = ball.distance(left_paddle)
+    distance_right = ball.distance(right_paddle)
+
+    if x_pos > 380 or x_pos < -380:
+        is_game_on = False
+    if y_pos > 280 or y_pos < -280:
+        ball.bounce_walls()
+    if (distance_left < 29 and x_pos < -340) or (distance_right < 29 and x_pos > 340):
+        ball.bounce_paddle()
+print("Game Over")
 screen.exitonclick()

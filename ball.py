@@ -9,8 +9,8 @@ class Ball(Turtle):
         self.color("white")
         self.speed(1)
 
-    def move(self):
-        self.forward(.1)
+    def move(self, speed=0.025):
+        self.forward(speed)
 
     def bounce_walls(self):
         heading = self.heading()
